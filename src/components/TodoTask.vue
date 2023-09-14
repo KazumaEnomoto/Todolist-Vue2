@@ -9,7 +9,7 @@
             <ul>
                 <div class="tasklist" v-for="(task, index) of tasks" :key="task">
                     <p>{{task}}</p>
-                    <button @click="modalOpen()">編集</button>
+                    <button @click="modalOpen(index)">編集</button>
                     <button @click="remove(index)">削除</button>
                     <button @click="complete(index)">完了</button>
                 </div>
@@ -43,7 +43,7 @@
                     <span class="modal-close" @click="modalClose()">×</span>
                 </div>
                 <div class="modal-body">
-                    <input type="text" placeholder="元のタスク">
+                    <input type="text" placeholder="">
                     <button>編集する</button>
                 </div>
             </div>
@@ -55,6 +55,7 @@
 export default {
     data() {
         return {
+            taskNumber: 0,
             newTask: '',
             tasks: [
                 'ex）Vue.jsの勉強をする',
@@ -81,9 +82,13 @@ export default {
         update() {
 
         },
-        modalOpen() {
+        modalOpen(index) {
             const updateModal = document.getElementById('update-modal');
             updateModal.style.display = 'block';
+            console.log(index);
+            console.log(this.taskNumber);
+            this.taskNumber = index;
+            console.log(this.taskNumber);
         },
         modalClose() {
             const updateModal = document.getElementById('update-modal');
