@@ -36,9 +36,17 @@
                 </div>
             </ul>
         </div>
-        <div id="updateModal" class="modal">
-            <input type="text" placeholder="元のタスク">
-            <button>編集する</button>
+        <div id="update-modal" class="modal">
+            <div class="modal-contents">
+                <div class="modal-header">
+                    <p>タスクの内容を編集</p>
+                    <span class="modal-close" @click="modalClose()">×</span>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="元のタスク">
+                    <button>編集する</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -74,8 +82,12 @@ export default {
 
         },
         modalOpen() {
-            const updateModal = document.getElementById('updateModal');
+            const updateModal = document.getElementById('update-modal');
             updateModal.style.display = 'block';
+        },
+        modalClose() {
+            const updateModal = document.getElementById('update-modal');
+            updateModal.style.display = 'none';
         },
         remove(index) {
             this.deletedTasks.splice(this.deletedTasks.length, 0, this.tasks[index]);
