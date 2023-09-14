@@ -9,7 +9,7 @@
             <ul>
                 <div class="tasklist" v-for="(task, index) of tasks" :key="task">
                     <p>{{task}}</p>
-                    <button @click="update">編集</button>
+                    <button @click="modalOpen()">編集</button>
                     <button @click="remove(index)">削除</button>
                     <button @click="complete(index)">完了</button>
                 </div>
@@ -36,7 +36,7 @@
                 </div>
             </ul>
         </div>
-        <div class="modal">
+        <div id="updateModal" class="modal">
             <input type="text" placeholder="元のタスク">
             <button>編集する</button>
         </div>
@@ -72,6 +72,10 @@ export default {
         },
         update() {
 
+        },
+        modalOpen() {
+            const updateModal = document.getElementById('updateModal');
+            updateModal.style.display = 'block';
         },
         remove(index) {
             this.deletedTasks.splice(this.deletedTasks.length, 0, this.tasks[index]);
@@ -149,6 +153,7 @@ ul {
 }
 
 .modal {
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
