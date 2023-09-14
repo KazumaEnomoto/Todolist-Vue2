@@ -91,6 +91,7 @@ export default {
         update() {
             const updatedTask = document.getElementById('updated-task').value;
             this.tasks.splice(this.taskNumber, 1, updatedTask);
+            document.getElementById('updated-task').value = '';
             this.modalClose();
         },
         modalOpen(index) {
