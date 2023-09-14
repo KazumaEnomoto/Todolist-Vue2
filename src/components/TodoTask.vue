@@ -51,7 +51,6 @@ export default {
             completedTasks: [
                 'ex）PHPの学習をする',
                 'ex）洗濯物をたたむ',
-                'ex）ご飯を作る',
             ],
             deletedTasks: [
                 'ex）削除済みのタスク',
