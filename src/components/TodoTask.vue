@@ -36,6 +36,10 @@
                 </div>
             </ul>
         </div>
+        <div class="modal">
+            <input type="text" placeholder="元のタスク">
+            <button>編集する</button>
+        </div>
     </div>
 </template>
 
