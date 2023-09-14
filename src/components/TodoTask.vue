@@ -158,6 +158,10 @@ p {
     display: flex;
 }
 
+.tasklist p {
+    flex-basis: 50%;
+}
+
 ul {
     list-style: none;
     margin: auto;
@@ -168,10 +172,14 @@ ul {
     color: red;
 }
 
+.buttons button {
+    width: 100%;
+}
+
 .buttons {
-    width: 200px;
+    width: 300px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 
