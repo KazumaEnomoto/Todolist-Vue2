@@ -43,8 +43,9 @@
                     <span class="modal-close" @click="modalClose()">×</span>
                 </div>
                 <div class="modal-body">
-                    <input type="text" placeholder="">
-                    <button>編集する</button>
+                    <p>元のタスク：{{tasks[taskNumber]}}</p>
+                    <input type="text" id="updated-task">
+                    <button @click="update()">編集する</button>
                 </div>
             </div>
         </div>
@@ -80,15 +81,14 @@ export default {
             }
         },
         update() {
-
+            const updatedTask = document.getElementById('updated-task').value;
+            this.tasks.splice(this.taskNumber, 1, updatedTask);
+            this.modalClose();
         },
         modalOpen(index) {
             const updateModal = document.getElementById('update-modal');
             updateModal.style.display = 'block';
-            console.log(index);
-            console.log(this.taskNumber);
             this.taskNumber = index;
-            console.log(this.taskNumber);
         },
         modalClose() {
             const updateModal = document.getElementById('update-modal');
@@ -101,22 +101,13 @@ export default {
         restore(index) {
             this.tasks.splice(this.tasks.length, 0, this.completedTasks[index]);
             this.completedTasks.splice(index, 1);
-            console.log(index);
-            console.log(this.tasks.length);
         },
         complete(index) {
-            console.log('足す前のlength');
-            console.log(this.completedTasks.length);
             this.completedTasks.splice(this.completedTasks.length, 0, this.tasks[index]);
             this.tasks.splice(index,1);
-            console.log('インデックス');
-            console.log(index);
-            console.log('length');
-            console.log(this.completedTasks.length);
         },
         destroy(index) {
             this.deletedTasks.splice(index,1);
-            console.log(this.deletedTasks.length);
         }
     }
 }
@@ -179,5 +170,9 @@ ul {
     width: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
+}
+
+.modal-contents {
+    background-color: #f4f4f4;
 }
 </style>
