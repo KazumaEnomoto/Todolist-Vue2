@@ -9,9 +9,11 @@
             <ul>
                 <div class="tasklist" v-for="(task, index) of tasks" :key="task">
                     <p>{{task}}</p>
-                    <button @click="modalOpen(index)">編集</button>
-                    <button @click="remove(index)">削除</button>
-                    <button @click="complete(index)">完了</button>
+                    <div class="buttons">
+                        <button @click="modalOpen(index)">編集</button>
+                        <button @click="remove(index)">削除</button>
+                        <button @click="complete(index)">完了</button>
+                    </div>
                 </div>
             </ul>
         </div>
@@ -23,7 +25,9 @@
             <ul>
                 <div class="tasklist" v-for="(completedTask, index) of completedTasks" :key="completedTask">
                     <p>{{completedTask}}</p>
-                    <button @click="restore(index)">戻す</button>
+                    <div class="buttons">
+                        <button @click="restore(index)">戻す</button>
+                    </div>
                 </div>
             </ul>
         </div>
@@ -32,20 +36,24 @@
             <ul>
                 <div class="tasklist" v-for="(deletedTask, index) of deletedTasks" :key="deletedTask">
                     <p>{{deletedTask}}</p>
-                    <button @click="destroy(index)">完全に削除する</button>
+                    <div class="buttons">
+                        <button @click="destroy(index)">完全に削除する</button>
+                    </div>
                 </div>
             </ul>
         </div>
         <div id="update-modal" class="modal">
             <div class="modal-contents">
                 <div class="modal-header">
-                    <p>タスクの内容を編集</p>
+                    <p>編集</p>
                     <span class="modal-close" @click="modalClose()">×</span>
                 </div>
                 <div class="modal-body">
                     <p>元のタスク：{{tasks[taskNumber]}}</p>
-                    <input type="text" id="updated-task">
-                    <button @click="update()">編集する</button>
+                        <span class="modal-body-text">
+                            <input type="text" id="updated-task">
+                            <button @click="update()">編集する</button>
+                        </span>
                 </div>
             </div>
         </div>
@@ -160,6 +168,13 @@ ul {
     color: red;
 }
 
+.buttons {
+    width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -174,5 +189,37 @@ ul {
 
 .modal-contents {
     background-color: #f4f4f4;
+    width: 70%;
+    margin: 20% auto;
+    border-radius: 15px;
+}
+
+.modal-header {
+    background: rgba(122, 178, 255, 0.3);
+    padding: 3px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-body {
+    padding: 20px;
+}
+.modal-body-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-body input {
+    width: 500px;
+    padding: 10px 0px;
+    font-size: 24px;
+}
+
+.modal-close {
+    font-size: 2rem;
+}
+
+.modal-close:hover {
+    cursor: pointer;
 }
 </style>
